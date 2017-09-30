@@ -46,7 +46,7 @@ app.get('/usuario/:nome', function(request, response) {
         response.json(usuarios);
     });
 });
-
+//atualiza usuário
 app.put('/usuario/:id', function(request, response) {
     var id = request.params.id;
     Usuario.update({ _id: id }, { $set: request.body }, function(err, result) {
@@ -54,7 +54,7 @@ app.put('/usuario/:id', function(request, response) {
         response.json(result);
     });
 });
-
+//deleta um usuário
 app.delete('/usuario', function(request, response) {
     var id = request.body.id;
     Usuario.remove({ _id: id }, function(err, result) {
