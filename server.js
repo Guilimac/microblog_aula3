@@ -22,6 +22,7 @@ app.get('/', function(request, response) {
 
 app.use('/api',api);
 
+
 app.listen(config.port, function() {
     console.log('iniciou!');
 });
