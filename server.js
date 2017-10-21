@@ -16,11 +16,12 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
 app.get('/', function(request, response) {
     response.send('Oi');
 });
 
-app.use('/api',api);
+app.use('/api', api);
 
 
 app.listen(config.port, function() {

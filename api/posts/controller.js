@@ -4,7 +4,19 @@ class PostsController {
     constructor() {}
 
     getAll(req, res) {
-        Post.find({}, function(err, posts) {
+            Post.find({}, function(err, posts) {
+                if (posts.length <= 0) {
+                    return res.status(404).send('nenhum post encontrado');
+                }
+                res.json(posts);
+            });
+        }
+        //Replicaset e Sharded Cluster
+    getAllPopulated(req, res) {
+        Post.find({}).populate('usuario', 'nome email idade').exec(function(err, posts) {
+            if (posts.length <= 0) {
+                return res.status(404).send('nenhum post encontrado');
+            }
             res.json(posts);
         });
     }
@@ -28,7 +40,7 @@ class PostsController {
     deletePost(req, res) {
         var id = req.body.id;
         Post.remove({ _id: id }, function(err, result) {
-            if (err) return res.send(err);
+            if (err) return res.status(500).send(err);
             res.json(result);
         });
     }
