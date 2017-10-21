@@ -1,12 +1,12 @@
 var Usuario = require('./models/usuario');
 
-function UsuarioController(){}
+function UsuarioController() {}
 
-UsuarioController.prototype.getAll = function(request,response){
+UsuarioController.prototype.getAll = function(request, response) {
     Usuario.find({}, function(err, usuarios) {
         response.json(usuarios);
     });
-}
+};
 
 UsuarioController.prototype.getByName = function(request, response) {
     var nome = request.params.nome;
@@ -14,7 +14,7 @@ UsuarioController.prototype.getByName = function(request, response) {
         if (err) return response.send(err);
         response.json(usuarios);
     });
-}
+};
 
 UsuarioController.prototype.putUser = function(request, response) {
     var id = request.params.id;
@@ -22,9 +22,10 @@ UsuarioController.prototype.putUser = function(request, response) {
         if (err) return response.send(err);
         response.json(result);
     });
-}
+};
 
 UsuarioController.prototype.postUser = function(request, response) {
+
     var usuario = new Usuario({
         email: request.body.email,
         senha: request.body.senha,
@@ -32,10 +33,10 @@ UsuarioController.prototype.postUser = function(request, response) {
         idade: request.body.idade
     });
     usuario.save(function(err, result) {
-        if (err) response.send(err);
+        if (err) return response.send(err);
         response.json(result);
     });
-}
+};
 
 UsuarioController.prototype.deleteUser = function(request, response) {
     var id = request.body.id;
@@ -43,13 +44,7 @@ UsuarioController.prototype.deleteUser = function(request, response) {
         if (err) return response.send(err);
         response.json(result);
     });
-}
+};
 
 
 module.exports = new UsuarioController();
-
-class Controller(){
-    costructor(){
-        
-    }
-}
